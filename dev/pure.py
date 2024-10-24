@@ -15,9 +15,9 @@ class Bouton:
             g.afficherTexte(type,x,y-5,"black",60)
 
 
-    def texte(self):
-        texte1=input("entrez votre nombre: ")
-        texte2=input("entre votre deuxieme nombre: ")
+def texte(self):
+    texte1=input("entrez votre nombre: ")
+    texte2=input("entre votre deuxieme nombre: ")
 
 
 
