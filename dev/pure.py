@@ -1,12 +1,12 @@
 import tkiteasy as tk
-import time
+
 X,Y=500,400
 g = tk.ouvrirFenetre(X, Y)
 on=True
 nombre = {'1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', "ampersand": "1",
           "eacute": "2", "quotedbl": "3", 'apostrophe': "4", 'parenleft': "5", 'section': "6", 'egrave': '7',
           'exclam': '8', 'ccedilla': '9', 'agrave': '0'}
-
+dict_operation={"+":"addition","-":"soustraction","x":"multiplication","/":"division"}
 class Bouton:
     def __init__(self,type,x,y,r,color):
         self.type=type
@@ -21,17 +21,15 @@ class Bouton:
 
 
 
-
-
-def addition(self,a,b):
+def addition(a,b):
     return a+b
-def soustraction(self,a,b):
+def soustraction(a,b):
     return a-b
-def multiplication(self,a,b):
+def multiplication(a,b):
     return a*b
-def division(self,a,b):
+def division(a,b):
     try:
-        a//b
+        a/b
         return a/b
     except:
         print("division par zéro")
@@ -52,85 +50,65 @@ def initgraph():
 
 
 def resultat(nb1,nb2,operation):
-    g.afficherTexte("CDECHAUX",350,250,"purple",30)
-    return None
+    resultat=globals()[dict_operation[operation]](nb1, nb2)
+    g.afficherTexte(resultat,350,250,"purple",30)
 
 
 liste=initgraph()
-
 listeA=[liste[i].bouton for i in range(4)]
 listeB=[liste[i].txt for i in range(4)]
 clickable=listeA+listeB
 print(clickable)
 
-
-
-text1=""
-text2=""
-cpt1=0
+text1,text2= "",""
 clic=None
+operation=""
+texthaut, textbas = None, None
 
 while on:
-    clic = g.recupererClic()
-    if clic != None:
+    touche = g.attendreTouche()
+    if touche in nombre:
+        text1 += nombre[touche]
+
+        if texthaut is None:
+            texthaut = g.afficherTexte(text1, 250, 70, "black", 50)
+
+        else:
+            g.changerTexte(texthaut, text1)
+
+    elif clic := g.recupererClic():
 
         o = g.recupererObjet(clic.x, clic.y)
 
-        if o in clickable:
+        for btn in liste[:-1]:
+            if o == btn.bouton or o == btn.txt:
+                operation = btn.type
+                break
 
-            text2 = text1[-1]
-            text1 = text1[:-1]
-            textbas = g.afficherTexte(text2, 250, 160, "black", 50)
-            g.changerTexte(texthaut, text1)
-
-
-            for i in range(4):
-                if o == liste[i].bouton or o == liste[i].txt:
-                    operation = liste[i].type
+        if operation:
             break
-
-    if clic==None:
-
-
-        touche=g.attendreTouche()
-
-        if touche in nombre.keys():
-            text1+=nombre[touche]
-
-            if cpt1==0:
-                texthaut=g.afficherTexte(text1,250,70,"black",50)
-                cpt1=1
-            else:
-                g.changerTexte(texthaut,text1)
-
-
     g.actualiser()
 
+# DEUXIEME VARIABLE DE NOTRE CALCUL
 deux=True
 while deux :
-    clic = g.recupererClic()
-    if clic == None:
+    touche = g.attendreTouche()
+    if touche in nombre:
+        text2 += nombre[touche]
 
-        touche = g.attendreTouche()
+        if textbas is None:
+            textbas = g.afficherTexte(text2, 250, 160, "black", 50)
 
-        if touche in nombre.keys():
-            text2 += nombre[touche]
-
+        else:
             g.changerTexte(textbas, text2)
 
-    if clic!=None:
+    elif clic := g.recupererClic():
 
-        o=g.recupererObjet(clic.x,clic.y)
+        o = g.recupererObjet(clic.x, clic.y)
 
         if o == liste[-1].bouton or o == liste[-1].txt:
-            text2=text2[:-1]
-            g.changerTexte(textbas,text2)
-            print("fin")
-            resultat(text1,text2,operation)
-
-
-
-            deux=False
+            resultat(int(text1), int(text2), operation)
+            break
 
 
 g.attendreClic()
