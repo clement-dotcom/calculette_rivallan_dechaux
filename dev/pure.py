@@ -19,8 +19,6 @@ class Bouton:
             self.bouton=g.dessinerDisque(x,y,r,color)
             self.txt=g.afficherTexte(type,x,y-5,"black",60)
 
-
-
 def addition(a,b):
     return a+b
 def soustraction(a,b):
@@ -48,11 +46,9 @@ def initgraph():
     g.dessinerRectangle(240,220,200,80,"grey" )
     return [a,b,c,d,e]
 
-
 def resultat(nb1,nb2,operation):
     resultat=globals()[dict_operation[operation]](nb1, nb2)
     g.afficherTexte(resultat,350,250,"purple",30)
-
 
 liste=initgraph()
 listeA=[liste[i].bouton for i in range(4)]
@@ -61,7 +57,7 @@ clickable=listeA+listeB
 print(clickable)
 
 text1,text2= "",""
-clic=None
+
 operation=""
 texthaut, textbas = None, None
 
@@ -75,8 +71,8 @@ while on:
 
         else:
             g.changerTexte(texthaut, text1)
-
-    elif clic := g.recupererClic():
+    clic= g.recupererClic()
+    if clic!= None:
 
         o = g.recupererObjet(clic.x, clic.y)
 
@@ -101,8 +97,8 @@ while deux :
 
         else:
             g.changerTexte(textbas, text2)
-
-    elif clic := g.recupererClic():
+    clic = g.recupererClic()
+    if clic != None:
 
         o = g.recupererObjet(clic.x, clic.y)
 
@@ -110,8 +106,5 @@ while deux :
             resultat(int(text1), int(text2), operation)
             break
 
-
 g.attendreClic()
 g.fermerFenetre()
-
-
