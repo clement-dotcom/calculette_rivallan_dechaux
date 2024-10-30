@@ -71,9 +71,8 @@ while on:
 
         else:
             g.changerTexte(texthaut, text1)
-    clic= g.recupererClic()
-    if clic!= None:
 
+    elif clic:=g.recupererClic():
         o = g.recupererObjet(clic.x, clic.y)
 
         for btn in liste[:-1]:
@@ -97,8 +96,7 @@ while deux :
 
         else:
             g.changerTexte(textbas, text2)
-    clic = g.recupererClic()
-    if clic != None:
+    elif clic:=g.recupererClic():
 
         o = g.recupererObjet(clic.x, clic.y)
 
