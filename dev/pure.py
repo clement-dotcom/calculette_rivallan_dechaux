@@ -7,7 +7,7 @@ on=True
 deux=True
 nombre = {'1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', "ampersand": "1",
           "eacute": "2", "quotedbl": "3", 'apostrophe': "4", 'parenleft': "5", 'section': "6", 'egrave': '7',
-          'exclam': '8', 'ccedilla': '9', 'agrave': '0','v':'.'}
+          'exclam': '8', 'ccedilla': '9', 'agrave': '0','semicolon':'.','period':'.'}
 dict_operation={"+":"addition","-":"soustraction","x":"multiplication","/":"division"}
 class Bouton:
     def __init__(self,type,x,y,r,color):
