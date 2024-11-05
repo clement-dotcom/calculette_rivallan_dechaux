@@ -7,7 +7,7 @@ on=True
 deux=True
 nombre = {'1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', "ampersand": "1",
           "eacute": "2", "quotedbl": "3", 'apostrophe': "4", 'parenleft': "5", 'section': "6", 'egrave': '7',
-          'exclam': '8', 'ccedilla': '9', 'agrave': '0'}
+          'exclam': '8', 'ccedilla': '9', 'agrave': '0','v':'.'}
 dict_operation={"+":"addition","-":"soustraction","x":"multiplication","/":"division"}
 class Bouton:
     def __init__(self,type,x,y,r,color):
@@ -120,7 +120,7 @@ def calculatrice():
                 calculatrice()
 
             if o == liste[-1].bouton or o == liste[-1].txt:
-                resultat(int(text1), int(text2), operation)
+                resultat(float(text1), float(text2), operation)
                 clic2 = g.attendreClic()
                 o = g.recupererObjet(clic2.x, clic2.y)
                 if o == liste[-2].bouton or o == liste[-2].txt:
