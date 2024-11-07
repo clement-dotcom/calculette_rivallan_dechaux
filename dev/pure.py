@@ -2,7 +2,7 @@ import tkiteasy as tk
 
 X,Y=500,400
 g = tk.ouvrirFenetre(X, Y)
-g.afficherTexte("Pressez une touche après chaque clic svp",250,10,"white",10)
+
 on=True
 deux=True
 nombre = {'1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', "ampersand": "1",
@@ -38,7 +38,7 @@ def division(a,b):
         print("division par zéro")
 
 def initgraph():
-
+    g.afficherTexte("Pressez une touche après chaque clic svp", 250, 10, "white", 10)
     a=Bouton("+",100,350,40,'darkorange')
     b=Bouton("-",200,350,40,'darkorange')
     c=Bouton("x",300,350,40,'darkorange')
